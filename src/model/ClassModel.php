@@ -38,7 +38,7 @@ class ClassModel
     public function getClassCode()
     {
         ob_start();
-        require (dirname(__FILE__) . '../template/ClassTemplate.php');
+        require (dirname(__FILE__) . '/../template/ClassTemplate.php');
         $code = ob_get_contents();
         ob_clean();
         return $code;
