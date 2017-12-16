@@ -68,17 +68,17 @@ class ClassGenerator
     }
 
     private function parseArray(ClassModel $classModel, $attributeName, $value) {
+        $attributeNamePluralize = NameTool::pluralize($attributeName);
         if (count($value) >0) {
             $value = $value[0];
             if (is_object($value)) {
-                $attributeName = NameTool::pluralize($attributeName);
                 $className = NameTool::toCamelCase($attributeName);
                 $type = $className . '[]';
-                $classModel->addAttribute($attributeName, $type);
+                $classModel->addAttribute($attributeNamePluralize, $type);
                 call_user_func_array([$this, 'parseByStdClass'], [$value, $className, $classModel->getNamespace()]);
 
             } else {
-                $classModel->addAttribute($attributeName, gettype($value) . '[]');
+                $classModel->addAttribute($attributeNamePluralize, gettype($value) . '[]');
             }
         }
         return true;

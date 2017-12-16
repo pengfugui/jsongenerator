@@ -63,7 +63,7 @@ class ClassModel
     /**
      * @var {$attribute->getAttributeType()}
      */
-    protected {$attribute->getAttributeName()};
+    protected \${$attribute->getAttributeName()};
     
 CODE;
         return $attributeCode;
@@ -88,9 +88,9 @@ CODE;
     /**
      * @param {$attribute->getAttributeType()}
      */
-    public function {$setter}({$attributeName})
+    public function {$setter}(\${$attributeName})
     {
-        \$this->{$attributeName} = {$attributeName};
+        \$this->{$attributeName} = \${$attributeName};
     }
 
 CODE;
