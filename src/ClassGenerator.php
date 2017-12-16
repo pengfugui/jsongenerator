@@ -78,7 +78,7 @@ class ClassGenerator
                 call_user_func_array([$this, 'parseByStdClass'], [$value, $className, $classModel->getNamespace()]);
 
             } else {
-                $this->parseDefault($classModel, $attributeName, $value);
+                $classModel->addAttribute($attributeName, gettype($value) . '[]');
             }
         }
         return true;
