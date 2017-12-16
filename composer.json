@@ -1,0 +1,34 @@
+{
+  "name": "pengfugui/jsongenerator",
+  "description": "a json generate php class code tool",
+  "keywords": [
+    "php",
+    "json",
+    "generate",
+    "bean"
+  ],
+  "homepage": "https://github.com/pengfugui/jsongenerator",
+  "type": "library",
+  "license": "MIT",
+  "support": {
+    "source": "https://github.com/pengfugui/jsongenerator"
+  },
+  "authors": [
+    {
+      "name": "peng fu gui",
+      "email": "lalafer@163.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require": {
+    "php": ">=5.4.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "jsongenerator\\": ""
+    }
+  },
+  "config": {
+    "process-timeout": 1800
+  }
+}
