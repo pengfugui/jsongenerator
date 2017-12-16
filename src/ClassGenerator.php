@@ -68,17 +68,17 @@ class ClassGenerator
     }
 
     private function parseArray(ClassModel $classModel, $attributeName, $value) {
-        $attributeNamePluralize = NameTool::pluralize($attributeName);
         if (count($value) >0) {
             $value = $value[0];
             if (is_object($value)) {
-                $className = NameTool::toCamelCase($attributeName);
+                // 转换成单数形式的类名
+                $className = NameTool::toCamelCase(NameTool::singular($attributeName));
                 $type = $className . '[]';
-                $classModel->addAttribute($attributeNamePluralize, $type);
+                $classModel->addAttribute($attributeName, $type);
                 call_user_func_array([$this, 'parseByStdClass'], [$value, $className, $classModel->getNamespace()]);
 
             } else {
-                $classModel->addAttribute($attributeNamePluralize, gettype($value) . '[]');
+                $classModel->addAttribute($attributeName, gettype($value) . '[]');
             }
         }
         return true;
@@ -104,7 +104,15 @@ class ClassGenerator
 
     public static function isSimpleType($type)
     {
-        return $type == 'string' || $type == 'integer' || $type == 'int' || $type == 'float' || $type == 'double';
+        return in_array($type, [
+            'string',
+            'integer',
+            'int',
+            'float',
+            'double',
+            'bool',
+            'boolean'
+        ]);
     }
 
     /**
